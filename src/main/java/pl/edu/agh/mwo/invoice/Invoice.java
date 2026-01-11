@@ -11,14 +11,14 @@ public class Invoice {
 
     public void addProduct(Product product) {
         if (product == null) {
-            throw new IllegalArgumentException("Product is null, incorect.");
+            throw new IllegalArgumentException("Null pointer exeption on product");
         }
         this.products.add(product);
     }
 
     public void addProduct(Product product, Integer quantity) {
         if (product == null || quantity == null || quantity <= 0) {
-            throw new IllegalArgumentException("Quantity equols 0, incorect.");
+            throw new IllegalArgumentException("Quantity is equals to 0");
         }
         for (int i = 0; i < quantity; i++) {
             this.addProduct(product);
@@ -36,7 +36,6 @@ public class Invoice {
     public BigDecimal getTax() {
         BigDecimal taxSum = BigDecimal.ZERO;
         for (Product product : products) {
-            // Podatek = cena netto * procent podatku
             BigDecimal productTax = product.getPrice().multiply(product.getTaxPercent());
             taxSum = taxSum.add(productTax);
         }
